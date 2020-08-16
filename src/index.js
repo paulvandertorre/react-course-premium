@@ -1,17 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App = () => {
+  const people = ['Paul', 'Jan', 'Piet'];
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  return (
+    <ul>
+      {people.map((person, i) => (
+        <Person key={i} person={person} />
+      ))}
+    </ul>
+  );
+}
+
+const Person = props => {
+  const handlePersonClick = event => {
+    console.log(props.person, event)
+  }
+
+  return <li onClick={handlePersonClick}>{props.person}</li>
+}
+
+const rootNode = document.getElementById('root');
+ReactDOM.render(<App />, rootNode);
+
